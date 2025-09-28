@@ -37,8 +37,6 @@ class A2:
         b = np.array(b)
         r = np.array(r)
 
-        print(r)
-
         u = np.sum(A[r == 1], axis = 0) % mod
         v = np.sum(b[r == 1]) % mod
 
