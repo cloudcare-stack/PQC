@@ -37,6 +37,7 @@ class A2:
         b = np.array(b)
         r = np.array(r)
 
+        #calculate the sum of elements in array
         u = np.sum(A[r == 1], axis = 0) % mod
         v = np.sum(b[r == 1]) % mod
 
@@ -48,7 +49,7 @@ class A2:
         return (u, v)
 
     # define a method decrypt that takes as input 3 VALUES
-    def decrypt(self, private_key, cipher, p):
+    def decrypt(self, s, cipher, p):
         '''
         Args:
             s (list): Secret key vector
@@ -57,15 +58,15 @@ class A2:
         '''
         u, v = cipher
         u = np.array(u)
-        s = np.array(private_key)
+        s = np.array(s)
 
-        #compute dot product mod p
+        #compute dot product of arrays mod p
         result = np.dot(u, s) % p
         diff = (v - result) % p
 
 
         #return decrypted message (0 or 1)
-        if (diff <= p // 4).any() or (diff >= p - (p // 4)).all():
+        if (diff <= (p // 4)).any() or (diff >= p - (p // 4)).any():
             return 0
         else:
             return 1
